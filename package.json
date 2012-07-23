@@ -1,0 +1,24 @@
+{
+  "author": "Carlos Rodriguez <carlos@s8f.org> (http://s8f.org/)",
+  "name": "cantina-auth-facebook",
+  "description": "Facebook authentication for cantina",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cantina/cantina-auth-facebook.git"
+  },
+  "main": "./lib",
+  "dependencies": {
+    "cantina-utils": "git+ssh://git@github.com:cantina/cantina-utils.git",
+    "passport-facebook": "~0.1.4"
+  },
+  "devDependencies": {
+    "cantina": "git+ssh://git@github.com:cantina/cantina.git",
+    "cantina-auth": "git+ssh://git@github.com:cantina/cantina-auth.git",
+    "union": "~0.3.3"
+  },
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
