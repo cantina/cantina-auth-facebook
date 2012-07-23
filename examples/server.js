@@ -22,6 +22,7 @@ app.use(plugin, {
   clientSecret: '640d4fa0ff8ed12e95facddfe3b83651',
   callbackURL: 'http://localhost:3000/auth/facebook/callback',
   authURL: '/login',
+  scope: 'email',
   verify: function(token, tokenSecret, profile, done) {
     done(null, profile);
   }
