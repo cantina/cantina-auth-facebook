@@ -20,11 +20,12 @@ module.exports = {
     }
 
     app.passport.use(new FacebookStrategy(conf, app.verifyFacebook));
-    app.middleware.add(url.parse(conf.callbackURL).path, app.passport.authenticate('facebook', conf));
 
     if (conf.authURL) {
       app.middleware.add(conf.authURL, app.passport.authenticate('facebook', conf));
     }
+
+    app.middleware.add(url.parse(conf.callbackURL).path, app.passport.authenticate('facebook', conf));
 
     done();
   }

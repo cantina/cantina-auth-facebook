@@ -23,8 +23,8 @@ var plugins = [
   'middleware',
   'cantina-redis',
   'cantina-session',
-  'cantina-auth',
   authHelpers,
+  'cantina-auth',
   '../'
 ];
 
@@ -51,6 +51,4 @@ cantina.createApp(plugins, conf, function(err, app) {
       res.end('<a href="/login">click here to login via Facebook</a>');
     }
   });
-
-  console.dir(app.middleware.items);
 });
