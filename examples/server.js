@@ -2,7 +2,6 @@ var cantina = require('cantina');
 
 var authHelpers = {
   name: 'authHelpers',
-  version: '0.0.1',
   init: function(app, done) {
     app.serializeUser = function(user, done) {
       console.log(user);
