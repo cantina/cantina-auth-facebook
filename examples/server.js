@@ -3,15 +3,13 @@ var app = require('cantina');
 app.load(function(err) {
   if (err) return console.error(err);
 
-  app.conf.add({
-    'http': { port: 3000 },
-    'auth-facebook': {
-      clientID: '388250807064',
-      clientSecret: '640d4fa0ff8ed12e95facddfe3b83651',
-      callbackURL: 'http://localhost:3000/auth/facebook/callback',
-      authURL: '/login',
-      scope: 'email'
-    }
+  app.conf.set('http', { port: 3000 });
+  app.conf.set('auth-facebook', {
+    clientID: '388250807064',
+    clientSecret: '640d4fa0ff8ed12e95facddfe3b83651',
+    callbackURL: 'http://localhost:3000/auth/facebook/callback',
+    authURL: '/login',
+    scope: 'email'
   });
 
   require(app.plugins.http);
