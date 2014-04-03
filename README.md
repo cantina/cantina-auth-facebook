@@ -34,17 +34,17 @@ Configuration
 
 Usage
 -----
-Your application MUST listen for the authentication events:
-- `auth:serialize`
-- `auth:deserialize`
-- `auth-facebook:verify`
+Your application MUST provide handlers for serializing, deserializing, and verifying users.
+- `app.serializeUser`
+- `app.deserializeUser`
+- `app.verifyFacebookUser`
 
 Example
 -------
 ```js
 var app = require('cantina');
 
-app.load(function(err) {
+app.boot(function(err) {
   if (err) return console.error(err);
 
   app.conf.add({
@@ -57,24 +57,23 @@ app.load(function(err) {
     }
   });
 
-  require(app.plugins.http);
-  require(app.plugins.middleware);
+  app.serializeUser = function(user, cb) {
+    return cb(null, user);
+  };
+  app.deserializeUser = function(obj, cb) {
+    return cb(null, obj);
+  };
+  app.verifyFacebookUser = function(token, tokenSecret, profile, done) {
+    return done(null, profile);
+  };
+
+  require('cantina-web');
   require('cantina-redis');
   require('cantina-session');
   require('cantina-auth');
   require('../');
 
-  app.on('auth:serialize', function(user) {
-    return user;
-  });
-  app.on('auth:deserialize', function(obj) {
-    return obj;
-  });
-  app.on('auth-facebook:verify', function(token, tokenSecret, profile) {
-    return profile;
-  });
-
-  app.init(function(err) {
+  app.start(function(err) {
     if (err) return console.error(err);
 
     app.middleware.get('/', function index(req, res) {
