@@ -1,4 +1,4 @@
-var app = require('cantina');
+var app = require('cantina').createApp();
 
 app.boot(function(err) {
   if (err) return console.error(err);
@@ -22,11 +22,11 @@ app.boot(function(err) {
     return done(null, profile);
   };
 
-  require('cantina-web');
-  require('cantina-redis');
-  require('cantina-session');
-  require('cantina-auth');
-  require('../');
+  app.require('cantina-web');
+  app.require('cantina-redis');
+  app.require('cantina-session');
+  app.require('cantina-auth');
+  app.require('../');
 
   app.start(function(err) {
     if (err) return console.error(err);
